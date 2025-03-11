@@ -3,18 +3,21 @@ using AneemBookBazaar.MVC.DataAccess.Repository.IRepository;
 using AneemBookBazaar.MVC.DataAccess.Repository;
 using AneemBookBazaar.MVC.Web;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+//UNIT OF WORK
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 //DATABASE CONNECTION
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
               options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-//UNIT OF WORK
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
