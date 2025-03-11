@@ -1,0 +1,24 @@
+﻿@model Book
+<form method="post">
+    <fieldset>
+        <div class="border p-3 mt-4">
+            <div class="row pb-2">
+                <h2 class="text-danger">Delete</h2>
+            </div>
+            <div class="row pb-2">
+                <label class="form-label mt-4">Name</label>
+                <input class="form-control" disabled asp-for="Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+
+            </div>
+            <div class="pb-4">
+                <label class="form-label mt-4">Isbn Number</label>
+                <input type="number" class="form-control" disabled asp-for="Isbn">
+            </div>
+
+
+            <button type="submit" class="btn btn-danger ">Delete</button>
+            <button asp-controller="Book" asp-action="Index" class="btn btn-dark ">Back to list</button>
+        </div>
+    </fieldset>
+</form>
