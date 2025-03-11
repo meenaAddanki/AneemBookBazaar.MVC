@@ -1,4 +1,5 @@
 ﻿using AneemBookBazaar.MVC.DataAccess;
+using AneemBookBazaar.MVC.DataAccess.Repository.IRepository;
 using AneemBookBazaar.MVC.Models.EntityModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,16 +7,16 @@ namespace AneemBookBazaar.MVC.Web.Controllers
 {
     public class BookController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public BookController(ApplicationDbContext context)
+        private readonly IUnitOfWork _unitofWork;
+        public BookController(IUnitOfWork unitofWork)
         {
-            _context = context;
+            _unitofWork = unitofWork;
+
         }
         public IActionResult Index()
         {
-            var bookList = _context.Books.ToList();
+            var bookList = _unitofWork.Book.GetAll();
             return View(bookList);
-            
         }
         public IActionResult Create()
         {
@@ -28,9 +29,8 @@ namespace AneemBookBazaar.MVC.Web.Controllers
             {
                 return View(book);
             }
-            _context.Books.Add(book);
-            _context.SaveChanges();
-
+            _unitofWork.Book.Add(book);
+            _unitofWork.Save();
             TempData["Success"] = "Book created successfully";
             return RedirectToAction("Index");
 
@@ -41,7 +41,7 @@ namespace AneemBookBazaar.MVC.Web.Controllers
             {
                 return NotFound();
             }
-            Book book = _context.Books.FirstOrDefault(x=> x.ID == id);
+            Book book = _unitofWork.Book.Get(u => u.ID == id);
             if (book == null) { return NotFound(); }
             return View(book);
 
@@ -53,9 +53,10 @@ namespace AneemBookBazaar.MVC.Web.Controllers
             {
                 return View(book);
             }
-            _context.Books.Update(book);
-            _context.SaveChanges();
-
+            //_context.Books.Update(book);
+            //_context.SaveChanges();
+            _unitofWork.Book.Update(book);
+            _unitofWork.Save();
             TempData["Success"] = "Book updated successfully";
             return RedirectToAction("Index");
         }
@@ -65,7 +66,7 @@ namespace AneemBookBazaar.MVC.Web.Controllers
             {
                 return NotFound();
             }
-            Book book = _context.Books.FirstOrDefault(x => x.ID == id);
+            Book book = _unitofWork.Book.Get(x => x.ID == id);
             if (book == null) { return NotFound(); }
             return View(book);
 
@@ -73,10 +74,10 @@ namespace AneemBookBazaar.MVC.Web.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePost(int? id)
         {
-            var book = _context.Books.FirstOrDefault(x => x.ID == id);
+            var book = _unitofWork.Book.Get(x => x.ID == id);
             if (book == null) { return NotFound(); }
-            _context.Books.Remove(book);
-            _context.SaveChanges();
+            _unitofWork.Book.Delete(book);
+            _unitofWork.Save();
             TempData["Success"] = "Book deleted successfully";
             return RedirectToAction("Index");
         }
