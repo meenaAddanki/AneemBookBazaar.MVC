@@ -4,6 +4,8 @@ using AneemBookBazaar.MVC.DataAccess.Repository;
 using AneemBookBazaar.MVC.Web;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using AneemBookBazaar.MVC.Utility;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,12 +17,16 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
               options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => 
           options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
 //UNIT OF WORK
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+//EMAIL SENDER
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 var app = builder.Build();
 

@@ -7,9 +7,13 @@
             <div class="col-6">
                 <h2 class="text-primary">Book List</h2>
             </div>
-            <div class="col-6 text-end">
-                <a asp-asp-controller="Book" asp-action="Create" class="btn btn-primary"><i class="bi bi-plus"></i> Add Books </a>
-            </div>
+            @if ((User.IsInRole("Admin")))
+            {
+                <div class="col-6 text-end">
+                    <a asp-asp-controller="Book" asp-action="Create" class="btn btn-primary"><i class="bi bi-plus"></i> Add Books </a>
+                </div>
+            }
+           
         </div>
         <table class="table table-bordered table-striped">
             @if(Model.Count == 0)
@@ -41,10 +45,23 @@
                                 @obj.Isbn
                             </td>
                             <td>
-                                <a class="btn btn-warning" asp-controller="Book" asp-action="Update" asp-route-id="@obj.ID"> <i class="bi bi-pencil-square"></i> Update</a>
-                                <a class="btn btn-danger" asp-controller="Book" asp-action="Delete" asp-route-id="@obj.ID"> <i class="bi bi-trash"></i>Delete</a>
+                                @if ((User.IsInRole("Admin")))
+                                {
+                                <td>
+                                    <a class="btn btn-success" asp-page="/books/update" asp-route-id="@obj.ID"> <i class="bi bi-pencil-square"></i>Update</a>
+
+                                    <a class="btn btn-danger" asp-page="/books/delete" asp-route-id="@obj.ID"> <i class="bi bi-pencil-square"></i>Delete</a>
 
 
+                                </td>
+
+                                }
+                                @if ((User.IsInRole("Customer")))
+                                {
+                                <td>
+                                    <a class="btn btn-warning" asp-page="/books/checkOut" asp-route-id="@obj.ID"> <i class="bi bi-pencil-square"></i>CheckOut</a>
+                                </td>
+                                }
 
 
                             </td>
