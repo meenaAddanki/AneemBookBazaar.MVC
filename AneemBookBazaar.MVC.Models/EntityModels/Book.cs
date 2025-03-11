@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AneemBookBazaar.MVC.Web.Models
+namespace AneemBookBazaar.MVC.Models.EntityModels
 {
     public class Book
     {

@@ -1,4 +1,5 @@
-﻿using AneemBookBazaar.MVC.Web.Models;
+﻿using AneemBookBazaar.MVC.DataAccess;
+using AneemBookBazaar.MVC.Models.EntityModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AneemBookBazaar.MVC.Web.Controllers

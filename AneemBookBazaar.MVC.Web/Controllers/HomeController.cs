@@ -1,4 +1,5 @@
-using AneemBookBazaar.MVC.Web.Models;
+
+using AneemBookBazaar.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

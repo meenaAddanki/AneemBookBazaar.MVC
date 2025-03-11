@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AneemBookBazaar.MVC.Web", "AneemBookBazaar.MVC.Web\AneemBookBazaar.MVC.Web.csproj", "{6AB7D782-7F6B-4283-B38A-77F84859FC43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AneemBookBazaar.MVC.Data", "AneemBookBazaar.MVC.Data\AneemBookBazaar.MVC.Data.csproj", "{CBA75AF3-90C2-47BF-8C33-BFFA577B4B06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AneemBookBazaar.MVC.DataAccess", "AneemBookBazaar.MVC.Data\AneemBookBazaar.MVC.DataAccess.csproj", "{CBA75AF3-90C2-47BF-8C33-BFFA577B4B06}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AneemBookBazaar.MVC.Models", "AneemBookBazaar.MVC.Models\AneemBookBazaar.MVC.Models.csproj", "{56B42EB1-22CA-480B-86C1-811A2CCC173F}"
 EndProject

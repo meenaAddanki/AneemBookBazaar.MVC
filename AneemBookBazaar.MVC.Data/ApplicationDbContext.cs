@@ -1,8 +1,7 @@
-﻿using AneemBookBazaar.MVC.Web.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using AneemBookBazaar.MVC.Models.EntityModels;
 using Microsoft.EntityFrameworkCore;
 
-namespace AneemBookBazaar.MVC.Web
+namespace AneemBookBazaar.MVC.DataAccess
 {
     public class ApplicationDbContext : DbContext
     {

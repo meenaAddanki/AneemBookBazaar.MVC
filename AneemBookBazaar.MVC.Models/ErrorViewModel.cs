@@ -1,4 +1,4 @@
-namespace AneemBookBazaar.MVC.Web.Models
+namespace AneemBookBazaar.MVC.Models
 {
     public class ErrorViewModel
     {
