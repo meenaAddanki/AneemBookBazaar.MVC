@@ -15,9 +15,10 @@ namespace AneemBookBazaar.MVC.DataAccess
 
         }
         public DbSet<Book> Books { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
