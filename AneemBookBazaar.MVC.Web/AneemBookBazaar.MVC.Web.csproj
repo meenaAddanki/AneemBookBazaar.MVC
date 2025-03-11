@@ -25,4 +25,8 @@
     <ProjectReference Include="..\AneemBookBazaar.MVC.Utility\AneemBookBazaar.MVC.Utility.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Data\" />
+  </ItemGroup>
+
 </Project>
